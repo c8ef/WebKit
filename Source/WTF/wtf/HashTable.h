@@ -1558,7 +1558,7 @@ DECLARE_ALLOCATOR_WITH_HEAP_IDENTIFIER(HashTable);
         const ValueType* operator->() const { return get(); }
 
         HashTableConstIteratorAdapter& operator++() { ++m_impl; return *this; }
-        // postfix ++ intentionally omitted
+        HashTableConstIteratorAdapter& operator++(int) { auto tmp = *this; ++m_impl; return tmp; }
 
         typename HashTableType::const_iterator m_impl;
     };
@@ -1578,7 +1578,7 @@ DECLARE_ALLOCATOR_WITH_HEAP_IDENTIFIER(HashTable);
         ValueType* operator->() const { return get(); }
 
         HashTableIteratorAdapter& operator++() { ++m_impl; return *this; }
-        // postfix ++ intentionally omitted
+        HashTableIteratorAdapter& operator++(int) { auto tmp = *this; ++m_impl; return tmp; }
 
         operator HashTableConstIteratorAdapter<HashTableType, ValueType>() {
             typename HashTableType::const_iterator i = m_impl;
